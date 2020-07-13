@@ -8,6 +8,26 @@
 // username should not contain special characters
 // the function should return true if all the conditions above are validated.
 // return false if the validation fails
+function checkUserName()
+{
+    var name=document.getElementById("usertext").value;  
+    if (name==null || name==""){  
+        alert("Name can't be blank");  
+        return false;  
+      }
+      else if(name.length < 8 || name.length > 15)
+      {
+          alert("username cannot be less than 8 characters and less than 15 characters");
+      }
+      else if(hasWhiteSpace(name)==true)
+      {
+          alert("username cannot contain white spaces");
+      }
+}
+function hasWhiteSpace(s) {
+    return /\s/g.test(s);
+  }
+
 
 // Progression 2 
 // Check mail
@@ -15,10 +35,38 @@
 // only @ , . , _ [at,dot,underscore] is allowed
 // It can be alphanumeric in nature
 // return true if it passses all validation and false otherwise
-
+function checkEmail()
+{
+    var email = document.getElementById("emailtext").value;
+    atpos = email.indexOf("@");
+    dotpos = email.lastIndexOf(".");
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) || atpos < 1 || ( dotpos - atpos < 2 ))
+    {
+        alert("You have entered an invalid email address!");
+      return false;
+    }
+      
+      return true;
+}
 // Progression 3
 // Check password
 // create a function called as checkPassword()
 // should be alphanumeric in nature
 // password must contain atleast one Uppercase, one number and special characters[!@#$%^&*()_]
 // return true else return false
+
+function checkPassword()
+{
+    var password=document.getElementById("passwordtext").value;  
+    var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+    if(password.length<6){  
+        alert("Password must be at least 6 characters long.");  
+        return false;  
+        }  
+        
+      else   if(password.match(passw))
+        alert("Password is validated");
+        else
+        alert("password must contain atleast one Uppercase, one number and special characters[!@#$%^&*()_]")
+        // return true;
+}
